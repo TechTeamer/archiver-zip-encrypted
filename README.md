@@ -1,12 +1,9 @@
 # archiver-zip-encrypted
 
-> AES-256 and legacy Zip 2.0 encryption for Zip files.
-
 [![Build Status](https://travis-ci.org/artem-karpenko/archiver-zip-encrypted.svg?branch=master)](https://travis-ci.org/artem-karpenko/archiver-zip-encrypted)
 [![Coverage Status](https://coveralls.io/repos/github/artem-karpenko/archiver-zip-encrypted/badge.svg)](https://coveralls.io/github/artem-karpenko/archiver-zip-encrypted)
 
-Plugin for [archiver](https://www.npmjs.com/package/archiver) that adds encryption 
-capabilities to Zip compression. Pure JS, no external zip software needed.
+Plugin for [archiver](https://www.npmjs.com/package/archiver) that adds AES-256 and legacy Zip 2.0 encryption capabilities to Zip compression. Pure JS, no external zip software needed. This fork **contains the original 1.0.9 package** with updated dependencies to works better with archiver 5+ (tested with archiver@5.3.0).
 
 ## Install
 

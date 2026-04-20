@@ -6,4 +6,4 @@ node_js:
   - "14"
 before_install:
   - sudo apt-get install p7zip-full
-after_success: npm run coverage
+after_success: yarn coverage

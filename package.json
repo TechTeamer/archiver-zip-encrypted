@@ -4,17 +4,19 @@
   "description": "AES-256 and legacy Zip 2.0 encryption for Zip files",
   "dependencies": {
     "aes-js": "^3.1.2",
-    "archiver": "^5.0.0",
-    "archiver-utils": "^2.1.0",
-    "compress-commons": "^4.0.0",
-    "zip-stream": "^4.0.0"
+    "archiver": "^7.0.0",
+    "archiver-utils": "^5.0.1",
+    "buffer-crc32": "^1.0.0",
+    "compress-commons": "^6.0.0",
+    "crc32-stream": "^6.0.0",
+    "zip-stream": "^6.0.0"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "eslint": "^7.24.0",
-    "mocha": "^8.4.0",
+    "eslint": "^8.57.0",
+    "mocha": "^10.3.0",
     "nyc": "^15.1.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.5",
     "should": "^13.2.3"
   },
   "resolutions": {
@@ -46,5 +48,8 @@
     "aes",
     "archiver",
     "password"
-  ]
+  ],
+  "engines": {
+    "node": ">=16"
+  }
 }

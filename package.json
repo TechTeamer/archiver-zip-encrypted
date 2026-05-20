@@ -8,7 +8,7 @@
     "archiver-utils": "^5.0.1",
     "buffer-crc32": "^1.0.0",
     "compress-commons": "^7.0.1",
-    "crc32-stream": "^6.0.0",
+    "crc32-stream": "^7.0.1",
     "zip-stream": "^6.0.0"
   },
   "devDependencies": {

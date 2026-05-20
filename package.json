@@ -4,7 +4,7 @@
   "description": "AES-256 and legacy Zip 2.0 encryption for Zip files",
   "dependencies": {
     "aes-js": "^3.1.2",
-    "archiver": "^7.0.0",
+    "archiver": "^8.0.0",
     "archiver-utils": "^5.0.1",
     "buffer-crc32": "^1.0.0",
     "compress-commons": "^6.0.0",
@@ -14,7 +14,7 @@
   "devDependencies": {
     "coveralls": "^3.1.1",
     "eslint": "^8.57.0",
-    "mocha": "^10.3.0",
+    "mocha": "^11.7.5",
     "nyc": "^15.1.0",
     "rimraf": "^5.0.5",
     "should": "^13.2.3"

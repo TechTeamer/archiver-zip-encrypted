@@ -11,14 +11,6 @@ const lazystream = require('lazystream');
  * This test assumes 7-Zip installed in the system and available in path
  */
 describe('zip-aes', () => {
-    before(() => {
-        try {
-            archiver.registerFormat('zip-encrypted', require('../'));
-        } catch (e) {
-            // already registered
-        }
-    });
-
     beforeEach(() => {
         rmrf.sync('./target');
         fs.mkdirSync('./target', {recursive: true});

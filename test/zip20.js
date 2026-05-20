@@ -1,4 +1,3 @@
-const archiver = require('archiver');
 const fs = require('fs');
 const cp = require('child_process');
 const rmrf = require('rimraf');

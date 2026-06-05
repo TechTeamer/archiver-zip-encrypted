@@ -1,4 +1,5 @@
-const archiver = require('archiver');
+const { ZipArchive } = require('archiver');
+const zipArchive = (format, options) => new ZipArchive(format, options);
 const fs = require('fs');
 const cp = require('child_process');
 const rmrf = require('rimraf');
@@ -10,21 +11,13 @@ const lazystream = require('lazystream');
  * This test assumes 7-Zip installed in the system and available in path
  */
 describe('zip-aes', () => {
-    before(() => {
-        try {
-            archiver.registerFormat('zip-encrypted', require('../'));
-        } catch (e) {
-            // already registered
-        }
-    });
-
     beforeEach(() => {
         rmrf.sync('./target');
         fs.mkdirSync('./target', {recursive: true});
     });
 
     it('should pack with zip-aes and unpack with 7z', (done) => {
-        let archive = archiver.create('zip-encrypted', {zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'});
+        let archive = zipArchive('zip-encrypted', {zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'});
         archive.append(fs.createReadStream('./test/resources/test.txt'), { // with stream
             name: 'test.txt'
         });
@@ -66,7 +59,7 @@ describe('zip-aes', () => {
     // setting compression to 0 to overcome bug (?) in 16.02 7z (only available version of 7z in travis)
     // modern 7z (and WinZip as well) on Windows 10 does unpack compressed encrypted empty files w/o issues
     it('should pack empty file with zip-aes and unpack with 7z', (done) => {
-        let archive = archiver.create('zip-encrypted', {zlib: {level: 0}, encryptionMethod: 'aes256', password: '123'});
+        let archive = zipArchive('zip-encrypted', {zlib: {level: 0}, encryptionMethod: 'aes256', password: '123'});
         archive.append(fs.createReadStream('./test/resources/empty-file.txt'), {
             name: 'test.txt'
         });
@@ -95,7 +88,7 @@ describe('zip-aes', () => {
     });
 
     it('should pack directory with zip-aes and unpack with 7z', (done) => {
-        let archive = archiver.create('zip-encrypted', {zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'});
+        let archive = zipArchive('zip-encrypted', {zlib: {level: 8}, encryptionMethod: 'aes256', password: '123'});
         archive.directory('./test/resources/dir', 'dir');
         archive.finalize();
 

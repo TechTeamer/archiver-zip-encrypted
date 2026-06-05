@@ -26,6 +26,6 @@ describe('zip-encrypted', () => {
     });
 
     it('fallback construction', () => {
-        should(ZipEncrypted({ encryptionMethod: 'zip20', password: '123'})).not.be.undefined();
+        should(new ZipEncrypted({ encryptionMethod: 'zip20', password: '123'})).not.be.undefined();
     });
 });

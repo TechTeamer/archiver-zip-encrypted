@@ -9,6 +9,12 @@
     "buffer-crc32": "^1.0.0",
     "compress-commons": "^7.0.1",
     "crc32-stream": "^7.0.1",
+    "form-data": ">=2.5.4",
+    "js-yaml": ">=4.1.1",
+    "nanoid": ">=3.3.8",
+    "qs": ">=6.14.1",
+    "serialize-javascript": ">=7.0.5",
+    "uuid": "^14.0.0",
     "zip-stream": "^7.0.5"
   },
   "devDependencies": {

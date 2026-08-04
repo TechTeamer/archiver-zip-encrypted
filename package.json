@@ -47,6 +47,10 @@
   },
   "author": "Atrem Karpenko <gooyozh@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.facekom.net/",
+    "access": "restricted"
+  },
   "homepage": "https://github.com/TechTeamer/archiver-zip-encrypted#readme",
   "keywords": [
     "zip",

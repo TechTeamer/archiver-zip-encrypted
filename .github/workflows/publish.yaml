@@ -1,0 +1,64 @@
+name: Publish
+
+on:
+  push:
+    branches: [master]
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  NODE_VERSION: "24"
+
+jobs:
+  publish:
+    name: Publish to npm.facekom.net
+    runs-on: [self-hosted, node]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          if [ -f yarn.lock ]; then
+            yarn install --frozen-lockfile
+          else
+            yarn install
+          fi
+
+      - name: Build
+        run: |
+          set -euo pipefail
+          if [ -n "$(node -p "(require('./package.json').scripts||{}).build || ''")" ]; then
+            yarn build
+          else
+            echo "no build script — skipping"
+          fi
+
+      # publishConfig.registry (package.json) routes the publish to npm.facekom.net.
+      # The default registry stays npmjs, so the dependency install above is unaffected.
+      - name: Publish if version is new
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.FACEKOM_NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          printf '//npm.facekom.net/:_authToken=%s\n' "${NODE_AUTH_TOKEN}" >> "${HOME}/.npmrc"
+          name=$(node -p "require('./package.json').name")
+          version=$(node -p "require('./package.json').version")
+          if npm view "${name}@${version}" version --registry https://npm.facekom.net/ >/dev/null 2>&1; then
+            echo "${name}@${version} already on registry — skipping"
+          else
+            npm publish
+          fi

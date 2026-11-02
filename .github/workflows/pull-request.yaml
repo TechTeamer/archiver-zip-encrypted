@@ -17,7 +17,7 @@ defaults:
 jobs:
   test:
     name: Test
-    runs-on: [self-hosted, node]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -47,7 +47,7 @@ jobs:
 
   audit:
     name: Audit
-    runs-on: [self-hosted, node]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -84,7 +84,7 @@ jobs:
 
   sonar:
     name: SonarQube Scan
-    runs-on: [self-hosted, node]
+    runs-on: ubuntu-latest
     needs: audit
     permissions:
       contents: read
